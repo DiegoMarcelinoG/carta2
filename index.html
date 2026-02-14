@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Sofia ❤️</title>
+<style>
+body{margin:0;font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#1a001f,#3b003b,#000);color:white;text-align:center;overflow-x:hidden;overflow-y:auto;}
+.envelope{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);cursor:pointer;animation:tremer .15s infinite;}
+@keyframes tremer{0%{transform:translate(-50%,-50%) rotate(0)}25%{transform:translate(-50%,-50%) rotate(1deg)}50%{transform:translate(-50%,-50%) rotate(0)}75%{transform:translate(-50%,-50%) rotate(-1deg)}100%{transform:translate(-50%,-50%) rotate(0)}}
+.nome{font-size:40px;color:#ff4d88;text-shadow:0 0 10px #ff4d88,0 0 20px #ff1a75,0 0 30px #ff66a3;animation:brilho 2s infinite alternate;}
+@keyframes brilho{from{filter:brightness(1)}to{filter:brightness(1.8)}}
+.carta,.segundaTela{display:none;padding:30px;animation:aparecer 1.5s ease;}
+@keyframes aparecer{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.texto{font-size:22px;max-width:700px;margin:auto;line-height:1.6;text-shadow:0 0 10px rgba(255,77,136,.7);}
+.contador{margin-top:25px;font-size:20px;color:#ff99cc;}
+.botao{margin:40px auto 0 auto;padding:12px 30px;font-size:18px;border:none;border-radius:30px;background:#ff4d88;color:white;cursor:pointer;box-shadow:0 0 15px #ff4d88;transition:.3s;display:block;}
+.botao:hover{transform:scale(1.1);box-shadow:0 0 25px #ff1a75;}
+.heart{position:fixed;bottom:-20px;color:#ff4d88;animation:subir 6s linear infinite;}
+@keyframes subir{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-120vh) scale(1.5);opacity:0}}
+.heart-container{margin-top:40px;display:flex;justify-content:center;animation:pulsar 1.5s infinite;}
+@keyframes pulsar{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.heart-shape{font-size:20px;line-height:18px;white-space:pre;color:#ff4d88;text-shadow:0 0 15px #ff4d88,0 0 30px #ff1a75;}
+.sparkle{position:fixed;color:white;animation:brilhar 2s linear infinite;}
+@keyframes brilhar{0%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0)}}
+</style>
+</head>
+<body>
+
+<div class="envelope" onclick="abrir()">
+<div style="font-size:22px;margin-bottom:10px;">💌 PARA MEU AMOR 💌</div>
+<div class="nome">SOFIA</div>
+<div style="margin-top:15px;">Toque para abrir</div>
+</div>
+
+<div class="carta" id="carta">
+<h1>❤️ Minha Sofia ❤️</h1>
+<p class="texto">
+Desde o primeiro dia em que te conheci, soube que minha vida jamais seria a mesma.
+Cada momento ao seu lado é maravilhoso, mesmo tão distante um do outro, vc consegue me fazer feliz.
+Você é meu porto seguro, minha paz.
+Te amo mais do que as palavras podem expressar.
+<br><br>
+Eu amo suas fotos que vc me manda, mesmo quando são simples, eu amo, de verdade.
+Eu quero sempre tá conversando com vc, sempre quero sentir próximo de vc, msm às vezes agente não conversando muito.
+Me dscp se alguma vez fui chato com vc, se fui ignorante, se eu nunca te dei atenção direito.
+<br><br>
+Eu nunca te esquecerei de vdd.
+Vc é perfeita do jeitinho q vc é. ❤️
+</p>
+<div class="contador" id="contador"></div>
+<button class="botao" onclick="proximaTela()">Próximo</button>
+</div>
+
+<div class="segundaTela" id="segundaTela">
+<h1>❤️</h1>
+<p class="texto" style="font-size:28px;">EU LHE AMO MUITO MEU AMOR</p>
+<div class="heart-container">
+<div class="heart-shape">
+  ❤❤❤     ❤❤❤
+ ❤❤❤❤❤   ❤❤❤❤❤
+❤❤❤❤❤❤❤ ❤❤❤❤❤❤❤
+❤❤❤❤❤❤❤❤❤❤❤❤❤❤❤
+ ❤❤❤❤❤❤❤❤❤❤❤❤❤
+  ❤❤❤❤❤❤❤❤❤❤❤
+   ❤❤❤❤❤❤❤❤❤
+    ❤❤❤❤❤❤❤
+     ❤❤❤❤❤
+      ❤❤❤
+       ❤
+</div>
+</div>
+<button class="botao" onclick="voltarTela()">Voltar</button>
+</div>
+
+<audio id="musica" src="musica.mp3" loop></audio>
+
+<script>
+function abrir(){
+document.querySelector(".envelope").style.display="none";
+document.getElementById("carta").style.display="block";
+document.getElementById("musica").play();
+}
+function proximaTela(){
+document.getElementById("carta").style.display="none";
+document.getElementById("segundaTela").style.display="block";
+}
+function voltarTela(){
+document.getElementById("segundaTela").style.display="none";
+document.getElementById("carta").style.display="block";
+}
+function atualizarContador(){
+let inicio=new Date();
+inicio.setDate(inicio.getDate()-18);
+let hoje=new Date();
+let dias=Math.floor((hoje-inicio)/(1000*60*60*24));
+document.getElementById("contador").innerHTML="💞 Estamos juntos há "+dias+" dias 💞";
+}
+setInterval(atualizarContador,1000);
+atualizarContador();
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.innerHTML="❤";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),6000);
+},300);
+setInterval(()=>{
+let sparkle=document.createElement("div");
+sparkle.className="sparkle";
+sparkle.style.left=Math.random()*100+"vw";
+sparkle.style.top=Math.random()*100+"vh";
+sparkle.innerHTML="✨";
+document.body.appendChild(sparkle);
+setTimeout(()=>sparkle.remove(),2000);
+},500);
+</script>
+
+</body>
+</html>
